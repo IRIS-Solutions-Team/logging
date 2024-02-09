@@ -4,13 +4,13 @@
 
 [project]
     name = "wlogging"
-    version = "0.1.0"
+    version = "0.1.1"
     authors = [
       { name="Jaromir Benes", email="jaromir.benes@gmail.com" },
     ]
     description = "Pythonic wrapper for the standard logging module"
     readme = "README.md"
-    requires-python = ">=3.12"
+    requires-python = ">=3.11"
     classifiers = [
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

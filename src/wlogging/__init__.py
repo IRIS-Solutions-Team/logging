@@ -84,7 +84,9 @@ def get_colored_logger(
     logger._decorated = True
     return logger
 
+
 def clear_handlers(logger: Logger, ) -> None:
     for handler in logger.handlers:
         logger.remove_handler(handler, )
+
 
