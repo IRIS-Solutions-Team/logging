@@ -5,29 +5,31 @@
 #[
 from __future__ import annotations
 
-import types
+from types import (MethodType, )
+import functools as _ft
 
 import logging
 from . import formatters as _formatters
 #]
 
 
-__all__ = [
+__all__ = (
     "get_colored_logger",
-]
+    "get_colored_two_liner",
+)
 
 
 def get_colored_logger(
     name: str | None = None,
-    propagate: bool = True,
     level: int = logging.WARNING,
     format: str = "%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    propagate: bool = True,
     remove_existing_handlers: bool = True,
 ) -> logging.Logger:
     """
     """
     logger = logging.getLogger(name, )
-    logger.clear_handlers = types.MethodType(_clear_handlers, logger, )
+    logger.clear_handlers = MethodType(_clear_handlers, logger, )
     logger.propagate = propagate
     if remove_existing_handlers:
         logger.clear_handlers()
@@ -38,6 +40,12 @@ def get_colored_logger(
     logger.setLevel(level, )
     logger._decorated = True
     return logger
+
+
+get_colored_two_liner = _ft.partial(
+    get_colored_logger,
+    format="%(asctime)s | %(levelname)s | %(name)s:\n••• %(message)s",
+)
 
 
 def _clear_handlers(logger: Logger, ) -> None:
