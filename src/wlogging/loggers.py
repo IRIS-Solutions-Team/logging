@@ -15,6 +15,7 @@ from . import formatters as _formatters
 
 __all__ = (
     "get_colored_logger",
+    "get_short_logger",
     "get_colored_two_liner",
 )
 
@@ -42,9 +43,15 @@ def get_colored_logger(
     return logger
 
 
+get_short_logger = _ft.partial(
+    get_colored_logger,
+    format="%(name)s | %(message)s",
+)
+
+
 get_colored_two_liner = _ft.partial(
     get_colored_logger,
-    format="%(asctime)s | %(levelname)s | %(name)s:\n••• %(message)s",
+    format="%(asctime)s | %(levelname)s | %(name)s:\n::: %(message)s",
 )
 
 
