@@ -22,7 +22,7 @@ __all__ = (
 
 def get_colored_logger(
     name: str | None = None,
-    level: int = logging.WARNING,
+    level: int | None = None,
     format: str = "%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     propagate: bool = True,
     remove_existing_handlers: bool = True,
@@ -38,7 +38,8 @@ def get_colored_logger(
     formatter = _formatters.ColoredFormatter(format, )
     handler.set_formatter(formatter, )
     logger.addHandler(handler, )
-    logger.setLevel(level, )
+    if level is not None:
+        logger.setLevel(level, )
     logger._decorated = True
     return logger
 
